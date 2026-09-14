@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jarvis AI - Intelligent Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-content">
+        <h1>🤖 Jarvis AI</h1>
+        <p class="subtitle">Your Intelligent Assistant</p>
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="chat-container">
+      <div id="chatBox" class="chat-box">
+        <div class="welcome-message">
+          <h2>Welcome to Jarvis AI</h2>
+          <p>I'm your intelligent assistant. Ask me anything or give me commands!</p>
+          <div class="suggestion-buttons">
+            <button class="suggestion" onclick="sendMessage('Hello!')">Hello!</button>
+            <button class="suggestion" onclick="sendMessage('What can you do?')">What can you do?</button>
+            <button class="suggestion" onclick="sendMessage('Help me')">Help me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <form id="promptForm" onsubmit="handleSubmit(event)">
+          <div class="input-wrapper">
+            <input 
+              type="text" 
+              id="promptInput" 
+              class="prompt-input" 
+              placeholder="Ask me anything or give me a command..."
+              autocomplete="off"
+            >
+            <button type="submit" class="send-btn">
+              <span>Send</span>
+              <span class="arrow">➤</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Task Options -->
+        <div class="task-options">
+          <button class="task-btn" onclick="showTaskPanel()">⚙️ Background Tasks</button>
+          <button class="task-btn" onclick="showActiveTasks()">📋 Active Tasks</button>
+          <button class="task-btn" onclick="clearChat()">🔄 Clear Chat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Panel (Hidden by default) -->
+    <div id="taskPanel" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeTaskPanel()">&times;</span>
+        <h2>Execute Background Task</h2>
+        
+        <div class="task-form">
+          <div class="form-group">
+            <label for="taskType">Task Type:</label>
+            <select id="taskType">
+              <option value="send_email">Send Email</option>
+              <option value="web_search">Web Search</option>
+              <option value="data_analysis">Data Analysis</option>
+              <option value="file_operation">File Operation</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="emailFields" style="display: block;">
+            <label for="recipient">Recipient Email:</label>
+            <input type="email" id="recipient" placeholder="user@example.com">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" placeholder="Email Subject">
+          </div>
+
+          <div class="form-group" id="searchFields" style="display: none;">
+            <label for="searchQuery">Search Query:</label>
+            <input type="text" id="searchQuery" placeholder="What to search for...">
+          </div>
+
+          <button class="btn-primary" onclick="executeTask()">Execute Task</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>Jarvis is thinking...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
